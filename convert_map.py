@@ -18,7 +18,7 @@ for prop in static_geometry.find_all("prop"):
         "position": {
             "x": float(prop.find("position").find("x").text) / 100,
             "y": float(prop.find("position").find("z").text) / 100,  # y and z flip is intentional
-            "z": -float(prop.find("position").find("y").text) / 100,  # And yes, this is also intentional, otherwise the level would be flipped
+            "z": -float(prop.find("position").find("y").text) / 100,  # And yes, this "-" is also intentional, otherwise the level would be flipped
         },
         "rotation": {
             "x": float(x.text if (x := prop.find("rotation").find("x")) else 0.0),

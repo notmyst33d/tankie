@@ -2,7 +2,7 @@ import sys
 import json
 from bs4 import BeautifulSoup
 
-with open(f"{sys.argv[1]}/library.xml", "r") as f:
+with open(sys.argv[1], "r") as f:
     data = f.read()
 
 converted_library = {"groups": {}}
@@ -24,10 +24,10 @@ for group in library.find_all("prop-group"):
 
         if (mesh := prop.find("mesh")):
             data["mesh"] = mesh["file"].lower().replace(".3ds", ".glb")
-            data["textures"] = [{"name": texture["name"], "diffuse_map": texture["diffuse-map"]} for texture in mesh.find_all("texture")]
+            data["textures"] = [{"name": texture["name"], "diffuse_map": sys.argv[1].split("/")[-2] + "_" + texture["diffuse-map"].replace(".jpg", "_custom.png")} for texture in mesh.find_all("texture")]
 
         converted_library["groups"][group["name"]].append(data)
 
-with open(f"{sys.argv[1]}/library.json", "w") as f:
+with open(sys.argv[1].replace(".xml", ".json"), "w") as f:
     f.write(json.dumps(converted_library))
 
