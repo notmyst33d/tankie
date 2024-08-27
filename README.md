@@ -1,5 +1,5 @@
 # tankie
-Tanki Online model, map and library conversion for Godot(or any)
+Tanki Online model, map and library conversion for Godot(or any other engine)
 
 ## Features
 * Convert maps from old XML format to new LegacyMap JSON format
