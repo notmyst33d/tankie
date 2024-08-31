@@ -43,7 +43,7 @@ fn main() {
 
     // Step 2: Perform post-processing in Blender
     Command::new("blender")
-        //.arg("-b")
+        .arg("-b")
         .arg("-P")
         .arg("postprocess.py")
         .arg("--")
